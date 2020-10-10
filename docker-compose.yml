@@ -1,0 +1,26 @@
+version: "2"
+services:
+    app:
+        build:
+            context: .
+            dockerfile: ./server/Dockerfile
+        container_name: app
+        ports:
+            -  "3001:3001"
+        depends_on:
+                  - "mongo"
+    mongo:
+        image: mongo
+        restart: always
+        environment:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - "27017-27019:27017-27019"
+    client:
+        build:
+          context: .
+          dockerfile: ./client/Dockerfile
+        container_name: client
+        ports:
+          - "3000:3000"
