@@ -1,14 +1,15 @@
 FROM node:12
 
-RUN mkdir -p /app/client
-WORKDIR /app/client
+WORKDIR /app
 
-COPY ./client/package.json ./
+COPY ./package.json ./
 
 RUN npm install
+
+# RUN npm install react-scripts@3.4.1 -g --silent
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ['react-scripts', "start"]
+CMD ["npm", "start"]

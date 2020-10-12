@@ -1,9 +1,9 @@
-version: "2"
+version: "3.8"
 services:
     app:
         build:
-            context: .
-            dockerfile: ./server/Dockerfile
+            context: ./server
+            dockerfile: ./Dockerfile
         container_name: app
         ports:
             -  "3001:3001"
@@ -17,10 +17,12 @@ services:
           MONGO_INITDB_ROOT_PASSWORD: example
         ports:
             - "27017-27019:27017-27019"
+        volumes:
+            - ./data:/data/db
     client:
         build:
-          context: .
-          dockerfile: ./client/Dockerfile
+          context: ./client
+          dockerfile: ./Dockerfile
         container_name: client
         ports:
           - "3000:3000"

@@ -26,7 +26,7 @@ const port = process.env.PORT || 3001;
 
 // connect to database
 mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost/mern-crud');
+mongoose.connect('mongodb://root:example@mongo');
 SourceMapSupport.install();
 app.get('/', (req,res) => {
   return res.end('Api working');
@@ -43,3 +43,4 @@ app.use((req, res, next) => {
 app.listen(port,() => {
   console.log(`App Server Listening at ${port}`);
 });
+
